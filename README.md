@@ -67,3 +67,23 @@ bmp_decode(unsigned long c, float *r, float *g, float *b)
 ```
 
 Decode a 24-bit integer color into normalized (0.0f–1.0f) floats.
+
+## `BMP_COMPAT`
+
+BMP files are normally written bottom-to-top. By default this library
+creates BMP images that are "upside down," written top-to-bottom as is
+typical in other image formats. `bmp_init()` indicates this by writing
+the height as a negative value in the BMP data. However, not all BMP
+readers support this feature and may not be able to open the BMP files.
+
+To create "bottom-up" BMPs that are compatible with the most BMP
+readers, define `BMP_COMPAT` before including the header. (Or with
+`-DBMP_COMPAT` when compiling.)
+
+```c
+#define BMP_COMPAT
+#include "bmp.h"
+```
+
+The accessor functions, `bmp_set()` and `bmp_get()`, will be *slightly*
+slower when enabling this compile-time option.
