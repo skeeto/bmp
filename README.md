@@ -20,7 +20,7 @@ bmp_size(long width, long height)
 
 Compute the total size in bytes required for a bitmap of the given size.
 Returns 0 if the given dimensions are invalid, either due to being
-negative or too large (overflow).
+non-positive or too large (overflow).
 
 ```c
 void

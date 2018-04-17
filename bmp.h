@@ -8,9 +8,9 @@ static unsigned long
 bmp_size(long width, long height)
 {
     long pad = (width * 3) % 4;
-    if (width < 0 || height < 0) {
+    if (width < 1 || height < 1) {
         return 0; /* Illegal size */
-    } else if (height > 0 && ((width + pad) * 3) > 0x7fffffffL / height) {
+    } else if (((width + pad) * 3) > 0x7fffffffL / height) {
         return 0; /* Overflow on pixel data size */
     } else if (height * (width + pad) * 3 > 0x7fffffffL - 14 - 40) {
         return 0; /* Overflow adding header */

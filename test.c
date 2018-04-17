@@ -20,6 +20,7 @@ main(void)
     /* Overflow test */
     assert(bmp_size(3, 178956966) == 0x7ffffffe);
     assert(bmp_size(3, 178956967) == 0);
+    assert(bmp_size(0, 1) == 0);
 
     for (y = 0; y < h; y++) {
         for (x = 0; x < w; x++) {
