@@ -2,8 +2,8 @@
 #include <assert.h>
 #include "bmp.h"
 
-#define WIDTH   1024
-#define HEIGHT  1024
+#define WIDTH   1024L
+#define HEIGHT  1024L
 
 int
 main(void)
