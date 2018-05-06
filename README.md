@@ -23,6 +23,15 @@ Returns 0 if the given dimensions are invalid, either due to being
 non-positive or too large (overflow).
 
 ```c
+#define BMP_SIZE(width, height) ...
+```
+
+This is the macro form of `bmp_size()`, suitable for use as a constant
+so long as width and height are also constants. It's useful for
+allocating static buffers. Unlike the function, this macro does *not* do
+any sanity checks.
+
+```c
 void
 bmp_init(void *buf, long width, long height)
 ```

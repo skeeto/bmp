@@ -4,6 +4,8 @@
 #ifndef BMP_H
 #define BMP_H
 
+#define BMP_SIZE(w, h) ((h) * ((w) + ((w) * 3) % 4) * 3 + 14 + 40)
+
 static unsigned long
 bmp_size(long width, long height)
 {
