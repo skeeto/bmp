@@ -45,7 +45,7 @@ bmp_set(void *buf, long x, long y, unsigned long color)
 ```
 
 Set a specific pixel to a specific color. A color is a 24-bit integer
-encoded 0xBBGGRR.
+encoded 0xRRGGBB.
 
 ```c
 unsigned long
