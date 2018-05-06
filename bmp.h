@@ -185,9 +185,9 @@ bmp_encode(float r, float g, float b)
 static void
 bmp_decode(unsigned long c, float *r, float *g, float *b)
 {
-    unsigned long ur = (c >> 16 & 0xff);
-    unsigned long ug = (c >>  8 & 0xff);
-    unsigned long ub = (c >>  0 & 0xff);
+    unsigned long ur = c >> 16 & 0xff;
+    unsigned long ug = c >>  8 & 0xff;
+    unsigned long ub = c >>  0 & 0xff;
     *r = ur / 255.0f;
     *g = ug / 255.0f;
     *b = ub / 255.0f;
