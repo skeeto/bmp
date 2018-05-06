@@ -7,13 +7,11 @@
 static unsigned long
 bmp_size(long width, long height)
 {
-    long pad = (width * 3) % 4;
+    long pad = ((width % 4) * 3) % 4; /* Overflow-safe */
     if (width < 1 || height < 1) {
         return 0; /* Illegal size */
-    } else if (((width + pad) * 3) > 0x7fffffffL / height) {
-        return 0; /* Overflow on pixel data size */
-    } else if (height * (width + pad) * 3 > 0x7fffffffL - 14 - 40) {
-        return 0; /* Overflow adding header */
+    } else if (width > (0x7fffffffL - 14 - 40) / 3 / height - pad) {
+        return 0; /* Overflow */
     } else {
         return height * (width + pad) * 3 + 14 + 40;
     }
