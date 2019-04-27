@@ -37,8 +37,8 @@ bmp_init(void *buf, long width, long height)
     *p++ = 0x4D;
 
     /* bfSize */
-    pad = (width * 3) % 4;
-    size = height * (width + pad) * 3 + 14 + 40;
+    pad = (width * 3 * 3) % 4;
+    size = height * (width * 3 + pad) + 14 + 40;
     *p++ = size >>  0;
     *p++ = size >>  8;
     *p++ = size >> 16;
@@ -135,7 +135,7 @@ bmp_set(void *buf, long x, long y, unsigned long color)
         (unsigned long)hdr[19] <<  8 |
         (unsigned long)hdr[20] << 16 |
         (unsigned long)hdr[21] << 24;
-    long pad = (width * 3) % 4;
+    long pad = (width * 3 * 3) % 4;
 #ifdef BMP_COMPAT
     unsigned long height =
         (unsigned long)hdr[22] <<  0 |
@@ -144,7 +144,7 @@ bmp_set(void *buf, long x, long y, unsigned long color)
         (unsigned long)hdr[25] << 24;
     y = height - y - 1;
 #endif
-    p = hdr + 14 + 40 + y * (width + pad) * 3 + x * 3;
+    p = hdr + 14 + 40 + y * (width * 3 + pad) + x * 3;
     p[0]  = color >>  0;
     p[1]  = color >>  8;
     p[2]  = color >> 16;
@@ -160,7 +160,7 @@ bmp_get(const void *buf, long x, long y)
         (unsigned long)hdr[19] <<  8 |
         (unsigned long)hdr[20] << 16 |
         (unsigned long)hdr[21] << 24;
-    long pad = (width * 3) % 4;
+    long pad = (width * 3 * 3) % 4;
 #ifdef BMP_COMPAT
     unsigned long height =
         (unsigned long)hdr[22] <<  0 |
@@ -169,7 +169,7 @@ bmp_get(const void *buf, long x, long y)
         (unsigned long)hdr[25] << 24;
     y = height - y - 1;
 #endif
-    p = hdr + 14 + 40 + y * (width + pad) * 3 + x * 3;
+    p = hdr + 14 + 40 + y * (width * 3 + pad) + x * 3;
     return (unsigned long)p[0] <<  0 |
            (unsigned long)p[1] <<  8 |
            (unsigned long)p[2] << 16;
