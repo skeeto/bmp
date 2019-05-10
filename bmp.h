@@ -116,12 +116,6 @@ bmp_init(void *buf, long width, long height)
     *p++ = 0x00;
     *p++ = 0x00;
     *p++ = 0x00;
-    *p++ = 0x00;
-
-    /* biClrImportant */
-    *p++ = 0x00;
-    *p++ = 0x00;
-    *p++ = 0x00;
     *p   = 0x00;
 }
 
